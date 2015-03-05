@@ -135,7 +135,7 @@ input[type=button] {width: auto; overflow: visible;}
 
 /* FONTS
 -------------------------------------------------------------------------------*/
-@font-face {
+/*@font-face {
   font-family: 'Orbitron';
   src: url('../fonts/orbitron-light-webfont.eot');
   src: url('../fonts/orbitron-light-webfont.eot?#iefix') format('embedded-opentype'),
@@ -155,8 +155,9 @@ input[type=button] {width: auto; overflow: visible;}
        url('../fonts/orbitron-medium-webfont.svg#webfontD7xceb3L') format('svg');
   font-weight: normal;
   font-style: normal;
-}
+}*/
 
+// This is the only one we need, don't waste time loading others.
 @font-face {
   font-family: 'Orbitron';
   src: url('../fonts/orbitron-bold-webfont.eot');
@@ -168,7 +169,7 @@ input[type=button] {width: auto; overflow: visible;}
   font-style: normal;
 }
 
-@font-face {
+/*@font-face {
   font-family: 'Orbitron';
   src: url('../fonts/orbitron-black-webfont.eot');
   src: url('../fonts/orbitron-black-webfont.eot?#iefix') format('embedded-opentype'),
@@ -177,7 +178,21 @@ input[type=button] {width: auto; overflow: visible;}
        url('../fonts/orbitron-black-webfont.svg#webfontqMYZ91Rj') format('svg');
   font-weight: bolder;
   font-style: normal;
+}*/
+
+
+/* Mixins
+-------------------------------------------------------------------------------*/
+@mixin transition($transition, $length, $timing) {
+  -moz-transition:$transition $length $timing;
+  -o-transition:$transition $length $timing;
+  -webkit-transition:$transition $length $timing;
+  transition:$transition $length $timing;
 }
+
+
+/* General Styles
+-------------------------------------------------------------------------------*/
 
 /* A Linux- and Windows-friendly sans-serif font stack: http://prospects.mhurrell.co.uk/post/updating-the-helvetica-font-stack */
 body {
@@ -197,8 +212,8 @@ a:hover {
 }
 
 /* Custom text-selection colors (remove any text shadows: http://twitter.com/miketaylr/status/12228805301) */
-::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
-::selection {background: #fcd700; color: #fff; text-shadow: none;} 
+//::-moz-selection{background: #fcd700; color: #fff; text-shadow: none;}
+//::selection {background: #fcd700; color: #fff; text-shadow: none;} 
 
 /*  j.mp/webkit-tap-highlight-color */
 a:link {-webkit-tap-highlight-color: #fcd700;} 
@@ -308,7 +323,7 @@ header{
 .experience {
 
   p {
-    padding: 0 0 10px;
+    padding: 0 0 20px;
 
     em,
     strong,
@@ -317,18 +332,34 @@ header{
     }
 
     strong,
-    small { margin: 4px 0 0; }
+    small { 
+      //margin: 4px 0 0; 
+    }
 
   }
 
+  p.job-title { padding: 0 0 5px; }
+
   ul {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
 }
 
 #work-toggle {
   padding: 0 0 40px;
+  a { 
+    background: #444;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    @include transition(all,0.5s,ease);
+    width: 350px;
+  }
+  a:hover {
+    background: #666;
+  }
 }
 
 #additional-work { display: none; }
@@ -389,6 +420,13 @@ footer {
   }
 
 }
+
+@media screen and (max-width: 500px) {
+  #work-toggle {
+    a { width: 100%; }
+  }
+}
+
 
 
 /* Print styles
