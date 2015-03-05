@@ -241,6 +241,5 @@
   ga('create', 'UA-709645-11', 'auto');
   ga('send', 'pageview');
 </script>
-
 </body>
 </html>
